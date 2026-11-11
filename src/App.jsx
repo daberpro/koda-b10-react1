@@ -1,122 +1,58 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+export default function App() {
 
-function App() {
-  const [count, setCount] = useState(0)
+    return (
+    <form action="">
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+            <div>
+                <label htmlFor="name">Siapa nama anda?</label>
+                <br/>
+                <input name="nama" id="name" type="text"/>
+            </div>
 
-      <div className="ticks"></div>
+            <div>
+                <label htmlFor="age">Berapa umur anda?</label>
+                <br/>
+                <input name="umur" id="age" type="number"/>
+            </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            <div>
+                Apa jenis kelamin anda?
+                <br/>
+                <div>
+                    <input name="jenis-kelamin" id="male" type="radio" value="Laki-laki" defaultChecked />
+                    <label htmlFor="male">Laki-laki</label>
+                    <input name="jenis-kelamin" id="female" type="radio" value="Perempuan" />
+                    <label htmlFor="female">Perempuan</label>
+                </div>
+            </div>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+            <div>
+                Apakah anda perokok?
+                <br />
+                <div>
+                    <input defaultChecked name="perokok" id="smoker" type="radio" value="Perokok"/>
+                    <label htmlFor="smoker">Ya</label>
+                    <input name="perokok" id="notsmoker" type="radio" value="Bukan perokok"/>
+                    <label htmlFor="notsmoker">Tidak</label>
+                </div>
+            </div>
+
+            <div>
+                Jika anda perokok, rokok apa yang pernah anda coba?
+                <div>
+                    <input type="checkbox" id="m1" name="merek" value="Gudang garam filter"/><label htmlFor="m1">Gudang garam filter</label><br/>
+                    <input type="checkbox" id="m2" name="merek" value="Luck Strike"/><label htmlFor="m2">Luck Strike</label><br/>
+                    <input type="checkbox" id="m3" name="merek" value="Marioboro"/><label htmlFor="m3">Marioboro</label><br/>
+                    <input type="checkbox" id="m4" name="merek" value="Esse"/><label htmlFor="m4">Esse</label><br/>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+
+        </form>
+    )
+
 }
-
-export default App

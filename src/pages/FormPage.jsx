@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { string, object, number, array } from "yup";
 import { useEffect, useState } from "react";
-import { Link, redirect } from "react-router";
+import { Link } from "react-router";
 
 export default function FormPage() {
     const schema = object({
@@ -13,7 +13,7 @@ export default function FormPage() {
         merek: array().optional(),
     });
 
-    const { handleSubmit, register, formState, reset } = useForm({
+    const { handleSubmit, register, formState, reset, watch } = useForm({
         defaultValues: {
             nama: "",
             umur: 0,
@@ -37,12 +37,17 @@ export default function FormPage() {
         setPrevData(data);
     }, []);
 
-    useEffect(() => {
-        console.log(formState.errors);
-    }, [formState]);
+    const perokok = watch("perokok");
+    useEffect(() => {}, [formState]);
 
     function saveData(values) {
-        localStorage.setItem("data", JSON.stringify([...prevData, { id: prevData.length + 1, ...values }]));
+        localStorage.setItem(
+            "data",
+            JSON.stringify([
+                ...prevData,
+                { id: prevData.length + 1, ...values },
+            ]),
+        );
         reset();
     }
 
@@ -137,49 +142,51 @@ export default function FormPage() {
                     </div>
                 </div>
 
-                <div className="w-full bg-white rounded-xl p-6 flex flex-col justify-center gap-4 items-start">
-                    <span className="text-xl">
-                        Jika anda perokok, rokok apa yang pernah anda coba?
-                    </span>
-                    <div className="w-full flex justify-between items-start flex-col">
-                        <div className="flex items-center gap-3 flex-row">
-                            <input
-                                type="checkbox"
-                                id="m1"
-                                {...register("merek")}
-                                value="Gudang garam filter"
-                            />
-                            <label htmlFor="m1">Gudang garam filter</label>
-                        </div>
-                        <div className="flex items-center gap-3 flex-row">
-                            <input
-                                type="checkbox"
-                                id="m2"
-                                {...register("merek")}
-                                value="Luck Strike"
-                            />
-                            <label htmlFor="m2">Luck Strike</label>
-                        </div>
-                        <div className="flex items-center gap-3 flex-row">
-                            <input
-                                type="checkbox"
-                                id="m3"
-                                {...register("merek")}
-                                value="Marioboro"
-                            />
-                            <label htmlFor="m3">Marioboro</label>
-                        </div>
-                        <div className="flex items-center gap-3 flex-row">
-                            <input
-                                type="checkbox"
-                                id="m4"
-                                {...register("merek")}
-                                value="Esse"
-                            />
-                            <label htmlFor="m4">Esse</label>
+                {perokok === "Perokok" && (
+                    <div className="w-full bg-white rounded-xl p-6 flex flex-col justify-center gap-4 items-start">
+                        <span className="text-xl">
+                            Jika anda perokok, rokok apa yang pernah anda coba?
+                        </span>
+                        <div className="w-full flex justify-between items-start flex-col">
+                            <div className="flex items-center gap-3 flex-row">
+                                <input
+                                    type="checkbox"
+                                    id="m1"
+                                    {...register("merek")}
+                                    value="Gudang garam filter"
+                                />
+                                <label htmlFor="m1">Gudang garam filter</label>
+                            </div>
+                            <div className="flex items-center gap-3 flex-row">
+                                <input
+                                    type="checkbox"
+                                    id="m2"
+                                    {...register("merek")}
+                                    value="Luck Strike"
+                                />
+                                <label htmlFor="m2">Luck Strike</label>
+                            </div>
+                            <div className="flex items-center gap-3 flex-row">
+                                <input
+                                    type="checkbox"
+                                    id="m3"
+                                    {...register("merek")}
+                                    value="Marioboro"
+                                />
+                                <label htmlFor="m3">Marioboro</label>
+                            </div>
+                            <div className="flex items-center gap-3 flex-row">
+                                <input
+                                    type="checkbox"
+                                    id="m4"
+                                    {...register("merek")}
+                                    value="Esse"
+                                />
+                                <label htmlFor="m4">Esse</label>
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
 
                 <div className="w-full flex justify-between items-center h-fit">
                     <button

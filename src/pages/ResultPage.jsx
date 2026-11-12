@@ -8,12 +8,13 @@ export default function ResultPage() {
 
     const jenisKelamin = ["Laki-laki", "Perempuan"];
     const perokok = ["Perokok", "Bukan perokok"];
-    const merek = ["Gudang garam filter", "Luck Strike", "Marioboro", "Esse"];
+    const merek = ["Marioboro","Esse", "Luck Strike","Gudang garam filter"];
 
     useEffect(() => {
         let data = [];
         try {
             data = JSON.parse(localStorage.getItem("data") || "[]");
+            console.log(data)
         } catch {
             console.log(
                 "failed to load prev data, using default empty storage",
@@ -58,8 +59,8 @@ export default function ResultPage() {
                                 perokok.forEach((j) => {
                                     result.push(<td key={`${d.nama}-${d.id}${j}`}>{j === d.perokok? <>&#x2713;</>: ""}</td>);
                                 });
-                                merek.forEach((j,i) => {
-                                    result.push(<td key={`${d.nama}-${d.id}${j}`}>{j.includes(d.merek[i])? <>&#x2713;</>: ""}</td>);
+                                merek.forEach((j) => {
+                                    result.push(<td key={`${d.nama}-${d.id}${j}`}>{d.merek.includes(j)? <>&#x2713;</>: ""}</td>);
                                 });
                                 return (
                                     <tr className="*:text-center *:p-2 odd:bg-slate-100" key={`${d.nama}${d.umur}-${d.id}`}>{result}</tr>
